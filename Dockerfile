@@ -6,42 +6,40 @@ RUN npm ci --legacy-peer-deps
 COPY . .
 RUN npm run build
 
-# ----- Stage 2: App and PHP -----
-FROM richarvey/nginx-php-fpm:latest AS prod
-ENV WEBROOT /var/www/html/public
-ENV ERRORS_FILE 0
+# ----- Stage 2: Production (PHP & Nginx) -----
+FROM serversideup/php:8.3-fpm-nginx AS prod
+
+# Switch to root to set permissions
+USER root
+
+# Set the working directory
 WORKDIR /var/www/html
 
-# Copy app code
+# Copy the application code
 COPY . .
+
 # Copy built assets from Stage 1
 COPY --from=build-stage /app/public/build ./public/build
 
-# Set correct permissions for Laravel
+# Create SQLite database file and set permissions
 RUN touch /var/www/html/database/database.sqlite && \
-    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/scripts && \
-    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/scripts && \
-    chmod +x /var/www/html/scripts/*.sh
+    mkdir -p /var/www/html/storage/framework/sessions \
+             /var/www/html/storage/framework/views \
+             /var/www/html/storage/framework/cache && \
+    chown -R www-data:www-data /var/www/html && \
+    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Environment cleanup (Optional, depends on how you handle secrets)
-# RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
+# Switch back to the image default user
+USER www-data
 
-# Expose port 80
-EXPOSE 80
+# Expose the default port for this image
+EXPOSE 8080
 
-# Environment variables for the image
-ENV SKIP_COMPOSER=1
-ENV PHP_ERRORS_STDERR=1
-ENV RUN_SCRIPTS=1
-ENV REAL_IP_HEADER=1
-
-# Application configuration
-ENV APP_ENV=production
-ENV APP_DEBUG=false
-ENV WEBROOT=/var/www/html/public
-
-# Start the server
-CMD ["/start.sh"]
+# Configure the image for Laravel
+ENV AUTORUN_LARAVEL_MIGRATIONS=true
+ENV AUTORUN_LARAVEL_CONFIG_CACHE=true
+ENV AUTORUN_LARAVEL_ROUTE_CACHE=true
+ENV AUTORUN_LARAVEL_VIEW_CACHE=true
