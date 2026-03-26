@@ -9,6 +9,7 @@ RUN npm run build
 # ----- Stage 2: App and PHP -----
 FROM richarvey/nginx-php-fpm:latest AS prod
 ENV WEBROOT /var/www/html/public
+ENV ERRORS_FILE 0
 WORKDIR /var/www/html
 
 # Copy app code
