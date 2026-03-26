@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 # ----- Stage 2: App and PHP -----
-FROM richarvey/php-fpm-nginx:3.1.6
+FROM richarvey/php-fpm-nginx:3.1.6 AS prod
 WORKDIR /var/www/html
 
 # Copy app code
