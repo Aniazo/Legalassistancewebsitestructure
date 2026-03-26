@@ -56,7 +56,7 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/justice-viral" className="hover:text-blue-400 transition-colors">
-                  Justice Viral
+                  Suara Keadilan
                 </Link>
               </li>
               <li>

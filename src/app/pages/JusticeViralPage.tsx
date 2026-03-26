@@ -85,6 +85,45 @@ export function JusticeViralPage() {
     );
   };
 
+  const [recentCases, setRecentCases] = useState([
+    {
+      id: 101,
+      title: "Desak Transparansi Audit Penyaluran Dana Bansos",
+      category: "Korupsi",
+      description:
+        "Dana bansos yang seharusnya untuk rakyat miskin diduga disalahgunakan di beberapa daerah. Kami menuntut audit publik segera.",
+      upvotes: 45,
+      signatures: 200,
+      target: 5000,
+      daysLeft: 45,
+      status: "active",
+      author: "Forum Warga Cerdas",
+      date: "26 Maret 2026",
+    },
+    {
+      id: 102,
+      title: "Tolak Pembukaan Lahan Konservasi Margasatwa untuk Tambang",
+      category: "Lingkungan Hidup",
+      description:
+        "Pengalihan fungsi lahan konservasi mengancam habitat satwa endemik. Tolak izin perluasan lahan yang merusak alam.",
+      upvotes: 18,
+      signatures: 50,
+      target: 10000,
+      daysLeft: 60,
+      status: "active",
+      author: "Pencinta Alam Nusantara",
+      date: "26 Maret 2026",
+    },
+  ]);
+
+  const handleRecentUpvote = (id: number) => {
+    setRecentCases(
+      recentCases.map((c) =>
+        c.id === id ? { ...c, upvotes: c.upvotes + 1 } : c
+      )
+    );
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "trending":
@@ -128,7 +167,7 @@ export function JusticeViralPage() {
             <TrendingUp className="w-8 h-8 text-purple-600" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Justice Viral
+            Suara Keadilan
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
             Angkat isu hukum yang perlu perhatian publik. Bersama kita lebih kuat
@@ -271,9 +310,103 @@ export function JusticeViralPage() {
           </TabsContent>
 
           <TabsContent value="recent" className="space-y-6">
-            <div className="text-center py-12 text-gray-500">
-              Menampilkan kampanye terbaru...
-            </div>
+            {recentCases.map((caseItem) => (
+              <Card
+                key={caseItem.id}
+                className="p-6 hover:shadow-lg transition-shadow bg-white/70 backdrop-blur-md border-white/50"
+              >
+                <div className="flex gap-6">
+                  {/* Upvote Section */}
+                  <div className="flex flex-col items-center gap-2">
+                    <button
+                      onClick={() => handleRecentUpvote(caseItem.id)}
+                      className="flex flex-col items-center gap-1 p-3 rounded-lg hover:bg-gray-100 transition-colors group"
+                    >
+                      <ArrowUp className="w-6 h-6 text-gray-400 group-hover:text-purple-600 transition-colors" />
+                      <span className="text-sm font-semibold text-gray-700">
+                        {caseItem.upvotes.toLocaleString()}
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge
+                            variant="outline"
+                            className={getStatusColor(caseItem.status)}
+                          >
+                            {getStatusLabel(caseItem.status)}
+                          </Badge>
+                          <Badge variant="secondary">{caseItem.category}</Badge>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-purple-600 cursor-pointer">
+                          {caseItem.title}
+                        </h3>
+                        <p className="text-gray-600 mb-4">
+                          {caseItem.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-700">
+                          {caseItem.signatures.toLocaleString()} /{" "}
+                          {caseItem.target.toLocaleString()} tanda tangan
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          {Math.round(
+                            (caseItem.signatures / caseItem.target) * 100
+                          )}
+                          %
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-purple-600 h-2 rounded-full transition-all"
+                          style={{
+                            width: `${Math.min(
+                              (caseItem.signatures / caseItem.target) * 100,
+                              100
+                            )}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Meta Info */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                        <div className="flex items-center gap-1">
+                          <Users className="w-4 h-4" />
+                          <span>oleh {caseItem.author}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          <span>{caseItem.daysLeft} hari tersisa</span>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm">
+                          <Share2 className="w-4 h-4 mr-2" />
+                          Bagikan
+                        </Button>
+                        <Button
+                          className="bg-purple-600 hover:bg-purple-700"
+                          size="sm"
+                        >
+                          Tanda Tangani
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
           </TabsContent>
 
           <TabsContent value="success" className="space-y-6">
@@ -306,7 +439,7 @@ export function JusticeViralPage() {
         {/* How It Works */}
         <Card className="max-w-4xl mx-auto mt-12 p-8 bg-gradient-to-br from-teal-50/80 to-white/70 backdrop-blur-md border-white/50 shadow-xl">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Bagaimana Justice Viral Bekerja?
+            Bagaimana Suara Keadilan Bekerja?
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">

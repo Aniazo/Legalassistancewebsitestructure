@@ -49,7 +49,7 @@ export function HomePage() {
     },
     {
       icon: TrendingUp,
-      title: "Justice Viral",
+      title: "Suara Keadilan",
       description:
         "Angkat isu hukum yang perlu perhatian publik dan pemerintah. Upvote kasus, tandatangani petisi digital, dan jadilah bagian dari perubahan sistem hukum Indonesia.",
       color: "bg-purple-50 text-purple-600",
@@ -286,13 +286,15 @@ export function HomePage() {
                 Daftar Sekarang
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white bg-transparent hover:bg-white/10 text-lg px-8"
-              >
-                Hubungi Kami
-              </Button>
+              <Link to="/contact">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white bg-transparent hover:bg-white/10 text-lg px-8"
+                >
+                  Hubungi Kami
+                </Button>
+              </Link>
             </div>
             <p className="mt-8 text-sm text-blue-200">
               Tidak diperlukan kartu kredit • Akses instan • Gratis selamanya

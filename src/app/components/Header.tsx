@@ -11,7 +11,7 @@ export function Header() {
     { path: "/", label: "Beranda" },
     { path: "/scan-dokumen", label: "Scan Dokumen" },
     { path: "/tau-hukum", label: "Tau Hukum" },
-    { path: "/justice-viral", label: "Justice Viral" },
+    { path: "/justice-viral", label: "Suara Keadilan" },
     { path: "/halokum", label: "HaloKum" },
   ];
 
@@ -51,12 +51,16 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="outline" size="sm">
-              Masuk
-            </Button>
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-              Daftar Gratis
-            </Button>
+            <Link to="/login">
+              <Button variant="outline" size="sm" className="bg-transparent hover:bg-gray-50">
+                Masuk
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                Daftar Gratis
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,12 +95,16 @@ export function Header() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 mt-2">
-                <Button variant="outline" size="sm">
-                  Masuk
-                </Button>
-                <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-                  Daftar Gratis
-                </Button>
+                <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="outline" size="sm" className="w-full bg-transparent hover:bg-gray-50">
+                    Masuk
+                  </Button>
+                </Link>
+                <Link to="/register" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
+                    Daftar Gratis
+                  </Button>
+                </Link>
               </div>
             </div>
           </nav>
