@@ -107,8 +107,14 @@ export function HaloKumPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-100 text-gray-900 overflow-hidden relative">
+      <div className="fixed inset-0 opacity-40 pointer-events-none z-0">
+        <div className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-cyan-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute top-1/2 right-[-20%] w-[40rem] h-[40rem] bg-teal-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] bg-emerald-200 rounded-full blur-[100px] mix-blend-multiply" />
+      </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Header />
 
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
@@ -129,19 +135,33 @@ export function HaloKumPage() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Expert Consultation Section */}
-            <Card className="p-6">
-              <div className="flex items-center gap-2 mb-6">
-                <Shield className="w-6 h-6 text-orange-600" />
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Konsultasi dengan Pakar
-                </h2>
+            <Card className="p-6 bg-white/70 backdrop-blur-md border-white/50 shadow-lg">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-6 h-6 text-orange-600" />
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    Konsultasi dengan Pakar
+                  </h2>
+                </div>
+                <Button variant="ghost" size="sm" className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 font-medium">
+                  Lihat Semua
+                </Button>
+              </div>
+
+              {/* Expert Filters */}
+              <div className="flex gap-2 mb-6 overflow-x-auto pb-1 scrollbar-hide">
+                <Badge className="bg-orange-600 hover:bg-orange-700 text-white cursor-pointer px-4 py-1.5 whitespace-nowrap">Semua</Badge>
+                <Badge variant="outline" className="cursor-pointer hover:bg-gray-100 border-gray-300 text-gray-600 px-4 py-1.5 whitespace-nowrap">Pidana</Badge>
+                <Badge variant="outline" className="cursor-pointer hover:bg-gray-100 border-gray-300 text-gray-600 px-4 py-1.5 whitespace-nowrap">Keluarga</Badge>
+                <Badge variant="outline" className="cursor-pointer hover:bg-gray-100 border-gray-300 text-gray-600 px-4 py-1.5 whitespace-nowrap">Ketenagakerjaan</Badge>
+                <Badge variant="outline" className="cursor-pointer hover:bg-gray-100 border-gray-300 text-gray-600 px-4 py-1.5 whitespace-nowrap">Properti</Badge>
               </div>
 
               <div className="space-y-4">
                 {experts.map((expert) => (
                   <Card
                     key={expert.id}
-                    className="p-4 hover:shadow-md transition-shadow"
+                    className="p-4 hover:shadow-md transition-shadow bg-white/50 backdrop-blur-sm border-white/50"
                   >
                     <div className="flex items-start gap-4">
                       <Avatar className="w-16 h-16">
@@ -209,13 +229,10 @@ export function HaloKumPage() {
                 ))}
               </div>
 
-              <Button variant="outline" className="w-full mt-4">
-                Lihat Semua Pakar
-              </Button>
             </Card>
 
             {/* Discussion Forum */}
-            <Card className="p-6">
+            <Card className="p-6 bg-white/70 backdrop-blur-md border-white/50 shadow-lg">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">
                   Forum Diskusi Komunitas
@@ -249,7 +266,7 @@ export function HaloKumPage() {
                 {discussions.map((discussion) => (
                   <Card
                     key={discussion.id}
-                    className="p-4 hover:shadow-md transition-shadow cursor-pointer"
+                    className="p-4 hover:shadow-md transition-shadow cursor-pointer bg-white/50 backdrop-blur-sm border-white/50"
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex flex-col items-center gap-1">
@@ -299,7 +316,7 @@ export function HaloKumPage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Quick Question */}
-            <Card className="p-6 bg-gradient-to-br from-orange-50 to-white">
+            <Card className="p-6 bg-gradient-to-br from-orange-50/80 to-white/70 backdrop-blur-md border-white/50 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-4">
                 Punya Pertanyaan Cepat?
               </h3>
@@ -321,7 +338,7 @@ export function HaloKumPage() {
             </Card>
 
             {/* Popular Topics */}
-            <Card className="p-6">
+            <Card className="p-6 bg-white/70 backdrop-blur-md border-white/50 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-4">Topik Populer</h3>
               <div className="space-y-2">
                 <Badge
@@ -370,7 +387,7 @@ export function HaloKumPage() {
             </Card>
 
             {/* Community Stats */}
-            <Card className="p-6">
+            <Card className="p-6 bg-white/70 backdrop-blur-md border-white/50 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-4">Statistik Komunitas</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -393,7 +410,7 @@ export function HaloKumPage() {
             </Card>
 
             {/* Guidelines */}
-            <Card className="p-6 bg-blue-50 border-blue-200">
+            <Card className="p-6 bg-blue-50/80 backdrop-blur-md border-blue-200/50 shadow-sm">
               <h3 className="font-bold text-gray-900 mb-3">
                 Panduan Komunitas
               </h3>
@@ -417,6 +434,7 @@ export function HaloKumPage() {
       </div>
 
       <Footer />
+      </div>
     </div>
   );
 }

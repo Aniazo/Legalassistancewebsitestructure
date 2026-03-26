@@ -40,8 +40,14 @@ export function ScanDocumentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-100 text-gray-900 overflow-hidden relative">
+      <div className="fixed inset-0 opacity-40 pointer-events-none z-0">
+        <div className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-cyan-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute top-1/2 right-[-20%] w-[40rem] h-[40rem] bg-teal-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] bg-emerald-200 rounded-full blur-[100px] mix-blend-multiply" />
+      </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Header />
 
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
@@ -60,8 +66,8 @@ export function ScanDocumentPage() {
 
         <div className="max-w-4xl mx-auto">
           {/* Upload Section */}
-          <Card className="p-8 mb-8">
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-blue-500 transition-colors cursor-pointer">
+          <Card className="p-8 mb-8 bg-white/70 backdrop-blur-md border-white/50 shadow-xl">
+            <div className="border-2 border-dashed border-teal-300 bg-white/50 rounded-lg p-12 text-center hover:border-teal-500 transition-colors cursor-pointer">
               <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Upload Dokumen Anda
@@ -106,7 +112,7 @@ export function ScanDocumentPage() {
 
           {/* Results */}
           {result && (
-            <Card className="p-8">
+            <Card className="p-8 bg-white/70 backdrop-blur-md border-white/50 shadow-xl">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">
                 Hasil Analisis
               </h2>
@@ -169,7 +175,7 @@ export function ScanDocumentPage() {
           )}
 
           {/* How it Works */}
-          <Card className="p-8 mt-8 bg-gradient-to-br from-blue-50 to-white">
+          <Card className="p-8 mt-8 bg-gradient-to-br from-teal-50/80 to-white/70 backdrop-blur-md border-white/50 shadow-xl">
             <h3 className="text-xl font-bold text-gray-900 mb-6">
               Bagaimana Cara Kerjanya?
             </h3>
@@ -213,6 +219,7 @@ export function ScanDocumentPage() {
       </div>
 
       <Footer />
+      </div>
     </div>
   );
 }

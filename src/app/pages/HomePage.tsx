@@ -88,33 +88,35 @@ export function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-100 text-gray-900 overflow-hidden relative">
+      <div className="fixed inset-0 opacity-40 pointer-events-none z-0">
+        <div className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-cyan-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute top-1/2 right-[-20%] w-[40rem] h-[40rem] bg-teal-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] bg-emerald-200 rounded-full blur-[100px] mix-blend-multiply" />
+      </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Header />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4 py-20 md:py-32 relative">
+      <section className="relative text-gray-900 bg-transparent">
+        <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-6 px-4 py-2 bg-blue-500/30 rounded-full text-sm font-medium backdrop-blur-sm">
+            <div className="inline-block mb-6 px-4 py-2 bg-white/60 border border-teal-200 rounded-full text-sm font-medium text-teal-800 backdrop-blur-md shadow-sm">
               Platform Bantuan Hukum Digital Indonesia
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               BELA: Karena Semua Orang
               <br />
-              <span className="text-blue-200">Berhak Dibela</span>
+              <span className="text-teal-600">Berhak Dibela</span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
               Akses mudah ke keadilan untuk setiap warga Indonesia. Pahami hak
               Anda, konsultasi dengan ahli, dan jadilah bagian dari perubahan.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8"
+                className="bg-teal-600 text-white hover:bg-teal-700 text-lg px-8 shadow-lg shadow-teal-200"
               >
                 Mulai Sekarang
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -122,7 +124,7 @@ export function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white/10 text-lg px-8"
+                className="border-teal-600 text-teal-700 bg-transparent hover:bg-teal-50 text-lg px-8 backdrop-blur-sm"
               >
                 Pelajari Lebih Lanjut
               </Button>
@@ -132,11 +134,11 @@ export function HomePage() {
       </section>
 
       {/* Problem Statement Section */}
-      <section className="py-16 md:py-24 bg-red-50">
-        <div className="container mx-auto px-4">
+      <section className="relative py-16 md:py-24 bg-transparent border-t border-teal-100/30">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-6">
-              <AlertTriangle className="w-8 h-8 text-red-600" />
+              <AlertTriangle className="w-8 h-8 text-teal-600" />
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center">
                 Krisis Akses Keadilan di Indonesia
               </h2>
@@ -153,9 +155,9 @@ export function HomePage() {
               {stats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="p-6 text-center border-2 border-red-200 bg-white"
+                  className="p-6 text-center border-none bg-white/70 backdrop-blur-sm shadow-sm"
                 >
-                  <div className="text-4xl font-bold text-red-600 mb-2">
+                  <div className="text-4xl font-bold text-teal-600 mb-2">
                     {stat.number}
                   </div>
                   <div className="text-sm text-gray-600">{stat.label}</div>
@@ -163,7 +165,7 @@ export function HomePage() {
               ))}
             </div>
 
-            <div className="bg-white rounded-lg p-8 border-l-4 border-red-600 shadow-sm">
+            <div className="bg-white/80 backdrop-blur-sm rounded-lg p-8 border-l-4 border-teal-600 shadow-sm">
               <p className="text-lg text-gray-700 leading-relaxed">
                 <span className="font-semibold text-gray-900">
                   Akibatnya?
@@ -178,7 +180,7 @@ export function HomePage() {
       </section>
 
       {/* Solution Introduction Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-blue-50">
+      <section className="py-16 md:py-24 bg-white/40 backdrop-blur-sm border-y border-white/50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -192,7 +194,7 @@ export function HomePage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               {benefits.map((benefit, index) => (
-                <Card key={index} className="p-6 text-center border-none shadow-lg">
+                <Card key={index} className="p-6 text-center border-none shadow-lg bg-white/60 backdrop-blur-md">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-4">
                     <benefit.icon className="w-7 h-7 text-blue-600" />
                   </div>
@@ -208,7 +210,7 @@ export function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-transparent">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -266,7 +268,7 @@ export function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-teal-600 to-teal-800 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -279,7 +281,7 @@ export function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8"
+                className="bg-white text-teal-700 hover:bg-teal-50 text-lg px-8"
               >
                 Daftar Sekarang
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -287,7 +289,7 @@ export function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white/10 text-lg px-8"
+                className="border-white text-white bg-transparent hover:bg-white/10 text-lg px-8"
               >
                 Hubungi Kami
               </Button>
@@ -300,6 +302,7 @@ export function HomePage() {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 }

@@ -112,8 +112,14 @@ export function JusticeViralPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-100 text-gray-900 overflow-hidden relative">
+      <div className="fixed inset-0 opacity-40 pointer-events-none z-0">
+        <div className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-cyan-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute top-1/2 right-[-20%] w-[40rem] h-[40rem] bg-teal-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] bg-emerald-200 rounded-full blur-[100px] mix-blend-multiply" />
+      </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Header />
 
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
@@ -136,19 +142,19 @@ export function JusticeViralPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-          <Card className="p-6 text-center">
+          <Card className="p-6 text-center bg-white/70 backdrop-blur-md border-white/50">
             <div className="text-3xl font-bold text-purple-600 mb-2">
               247
             </div>
             <div className="text-sm text-gray-600">Kampanye Aktif</div>
           </Card>
-          <Card className="p-6 text-center">
+          <Card className="p-6 text-center bg-white/70 backdrop-blur-md border-white/50">
             <div className="text-3xl font-bold text-green-600 mb-2">
               89
             </div>
             <div className="text-sm text-gray-600">Kasus Terselesaikan</div>
           </Card>
-          <Card className="p-6 text-center">
+          <Card className="p-6 text-center bg-white/70 backdrop-blur-md border-white/50">
             <div className="text-3xl font-bold text-blue-600 mb-2">
               156K
             </div>
@@ -168,7 +174,7 @@ export function JusticeViralPage() {
             {cases.map((caseItem) => (
               <Card
                 key={caseItem.id}
-                className="p-6 hover:shadow-lg transition-shadow"
+                className="p-6 hover:shadow-lg transition-shadow bg-white/70 backdrop-blur-md border-white/50"
               >
                 <div className="flex gap-6">
                   {/* Upvote Section */}
@@ -298,7 +304,7 @@ export function JusticeViralPage() {
         </Tabs>
 
         {/* How It Works */}
-        <Card className="max-w-4xl mx-auto mt-12 p-8 bg-gradient-to-br from-purple-50 to-white">
+        <Card className="max-w-4xl mx-auto mt-12 p-8 bg-gradient-to-br from-teal-50/80 to-white/70 backdrop-blur-md border-white/50 shadow-xl">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             Bagaimana Justice Viral Bekerja?
           </h3>
@@ -342,6 +348,7 @@ export function JusticeViralPage() {
       </div>
 
       <Footer />
+      </div>
     </div>
   );
 }

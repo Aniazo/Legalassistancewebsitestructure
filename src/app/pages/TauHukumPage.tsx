@@ -93,8 +93,14 @@ export function TauHukumPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-100 text-gray-900 overflow-hidden relative">
+      <div className="fixed inset-0 opacity-40 pointer-events-none z-0">
+        <div className="absolute -top-20 -left-20 w-[40rem] h-[40rem] bg-cyan-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute top-1/2 right-[-20%] w-[40rem] h-[40rem] bg-teal-200 rounded-full blur-[100px] mix-blend-multiply" />
+        <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] bg-emerald-200 rounded-full blur-[100px] mix-blend-multiply" />
+      </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Header />
 
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
@@ -148,7 +154,7 @@ export function TauHukumPage() {
             {categories.map((category, index) => (
               <Card
                 key={index}
-                className="p-6 hover:shadow-lg transition-shadow cursor-pointer group"
+                className="p-6 hover:shadow-lg transition-shadow cursor-pointer group bg-white/70 backdrop-blur-md border-white/50"
               >
                 <div
                   className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${category.color} mb-4`}
@@ -203,7 +209,7 @@ export function TauHukumPage() {
         </div>
 
         {/* Example Article Preview */}
-        <Card className="max-w-4xl mx-auto mt-12 p-8 bg-gradient-to-br from-blue-50 to-white">
+        <Card className="max-w-4xl mx-auto mt-12 p-8 bg-gradient-to-br from-teal-50/80 to-white/70 backdrop-blur-md border-white/50 shadow-xl">
           <div className="flex items-start gap-4 mb-4">
             <div className="bg-blue-100 p-3 rounded-lg">
               <Car className="w-6 h-6 text-blue-600" />
@@ -274,6 +280,7 @@ export function TauHukumPage() {
       </div>
 
       <Footer />
+      </div>
     </div>
   );
 }
