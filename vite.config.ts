@@ -2,18 +2,25 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import laravel from 'laravel-vite-plugin'
 
 export default defineConfig({
   plugins: [
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
+    laravel({
+        input: [
+            'resources/css/app.css',
+            'resources/js/app.js',
+            'resources/js/src/styles/index.css', 
+            'resources/js/src/main.tsx'
+        ],
+        refresh: true,
+    }),
     react(),
     tailwindcss(),
   ],
   resolve: {
     alias: {
-      // Alias @ to the src directory
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './resources/js/src'),
     },
   },
 
